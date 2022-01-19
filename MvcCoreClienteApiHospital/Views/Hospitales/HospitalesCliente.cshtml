@@ -1,0 +1,53 @@
+﻿<h1 style="color:red">
+    Consumo Api Hospitales Cliente
+</h1>
+
+@section Scripts{
+                <script>
+                    $(document).ready(function () {
+                        $("#botonhospital").click(function () {
+                            var url =
+                                "https://apihospitalesazurenachocerratosql.azurewebsites.net/";
+                            var request = "api/hospitales";
+                            $.ajax({
+                                url: url + request,
+                                method: "GET",
+                                dataTypw: "json",
+                                success: function (data) {
+                                    var html = "";
+                                    $.each(data, function (index, hospital) {
+                                        html += "<tr>";
+
+                                        html += "<td>" + hospital.nombre + "</td>"
+                                        html += "<td>" + hospital.direccion + "</td>"
+                                        html += "<td>" + hospital.telefono + "</td>"
+                                        html += "<td>" + hospital.camas + "</td>"
+
+                                        html += "</tr>";
+                                    });
+                                    $("#tablahospital tbody").html(html);
+                                }
+                            })
+                        })
+                    });
+                </script>
+            }
+
+<button type="button" id="botonhospital"
+        class="btn-success">
+    Cargar Api Hospitales
+</button>
+
+<table id="tablahospital" class="table table-dark">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Camas</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
